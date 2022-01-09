@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  db_moneyapp:
+    image: postgres
+    container_name: db_moneyapp
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=moneyapp
+    volumes:
+      - pgdata:/data/postgres
+    network_mode: host
+
+  app:
+    build: .
+    container_name: moneyapp
+    depends_on:
+      - db_moneyapp
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/app
+    network_mode: host
+
+volumes:
+  pgdata:
