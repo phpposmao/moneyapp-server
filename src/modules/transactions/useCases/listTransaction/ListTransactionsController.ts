@@ -8,8 +8,6 @@ class ListTransactionsController {
 
     const listTransactionsUseCase = container.resolve(ListTransactionsUseCase);
 
-    console.log(userId);
-
     const transactions = await listTransactionsUseCase.execute({ userId });
 
     return response.json(transactions);

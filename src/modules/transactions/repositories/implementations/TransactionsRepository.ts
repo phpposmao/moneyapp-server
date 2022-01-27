@@ -21,8 +21,6 @@ class TransactionsRepository implements ITransactionsRepository {
   async list(userId): Promise<Transaction[]> {
     const transactions = await this.repository.find({ where: { user_id: userId } });
 
-    console.log(transactions);
-
     return transactions;
   }
 }
